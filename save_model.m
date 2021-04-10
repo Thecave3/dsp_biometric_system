@@ -4,11 +4,12 @@ function save_model(gmm_model,username)
 % each user in the database has a dedicated folder represented by its
 % username
 main_path = "./database/";
-
-if not(isfolder(main_path+username))
-    mkdir(main_path+username)
+user_path = main_path+username;
+if not(isfolder(user_path))
+    mkdir(user_path)
 end
 
 % save model
+save(user_path+"/gmm.mat", 'gmm_model') 
 
 end
