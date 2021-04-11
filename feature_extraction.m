@@ -12,10 +12,10 @@ fs = info.SampleRate;
 %detectSpeech(data,fs);
 
 % Locate and extract the region of speech in the audio
-idx = detectSpeech(data,fs);
-data = data(idx(1,1):idx(1,2));
+%idx = detectSpeech(data,fs);
+%data = data(idx(1,1):idx(1,2));
 
 % TODO explore mfcc function more in depth
 [coeffs,delta,deltaDelta,loc] = mfcc(data,fs);
-features = [coeffs,delta,deltaDelta,loc];
+features = [coeffs,delta];
 end

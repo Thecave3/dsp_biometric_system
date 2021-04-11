@@ -5,5 +5,5 @@ function gmm=get_stored_model(username)
 
 user_path = "./database/"+username+"/";
 % get gmm model with user path
-gmm = load(user_path+"gmm.mat"); 
+gmm = load(user_path+"gmm.mat").gmm_model; 
 end
