@@ -6,19 +6,18 @@ function verification(sample_time,username,acceptance_trshd)
 % acceptance_trshd indicates the minimum acceptance distance to be authenticated
 % correctly
 
-% need array ?
-[sample,data]= record_audio(sample_time);
-%plot(data);
-%audiowrite("./sam_"+ num2str(c)+".wav",data,sample.SampleRate);
-% pass the array ?
-extracted_gmm = feature_extraction(sample,data,sample_time);
-stored_gmm = get_stored_model(username);
+[data,info]= record_audio(sample_time);
+% plot(data);
 
-% check different types of distance available in pdist
-euclidean_distance = pdist(extracted_gmm,stored_gmm);
+extracted_ftrs = feature_extraction(data,info);
+extracted_gmm = create_gmm(extracted_ftrs)
+stored_gmm = get_stored_model(username)
 
-disp("euclidean_distance: " +euclidean_distance+" acceptance_trshd: "+acceptance_trshd);
-if euclidean_distance < acceptance_trshd
+% Mahalanobis distance to Gaussian mixture component
+mahal_distance = mahal(extracted_gmm,stored_gmm);
+
+disp("mahal_distance: " +mahal_distance+" acceptance_trshd: "+acceptance_trshd);
+if mahal_distance < acceptance_trshd
     disp("Welcome back "+username+"!"); 
 else
     disp("Error, unauthorized!"); 

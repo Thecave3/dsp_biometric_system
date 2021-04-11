@@ -3,22 +3,26 @@ function enrollment(sample_time,username)
 % routine that performs the creations of the templates
 % sample_time represents the recording time for each representation
 % username represent the identification in the database of the user
+main_path = "./database/";
 
-if isfolder(main_path+username)
+if not(isfolder(main_path+username))
     mkdir(main_path+username)
 end
 
+all_ftrs = [];
+
 for c = 1:3
-    % put into array
-    [sample,data]= record_audio(sample_time);
-    save_audio(username,c,data,sample);
+    [data,info]= record_audio(sample_time);
+    save_audio(username,c,data,info);
     disp("Wait for "+ num2str(sample_time)+ " seconds")
     pause(sample_time);
+    fresh_ftr = feature_extraction(data,info);
+    all_ftrs = vertcat(all_ftrs,fresh_ftr);
 end
-    
- % pass the array
- gmm_model = feature_extraction(sample,data,sample_time);
+
+ gmm_model  = create_gmm(all_ftrs);
+
  save_model(gmm_model,username);
- dist("New user enrolled in the system "+username);
+ disp("New user enrolled in the system "+username);
 end
 
