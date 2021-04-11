@@ -7,9 +7,9 @@ function [features]=feature_extraction(data,info)
 fs = info.SampleRate;
 
 % Normalize audio
-data = data./max(abs(data));
+%data = data./max(abs(data));
 
-detectSpeech(data,fs);
+%detectSpeech(data,fs);
 
 % Locate and extract the region of speech in the audio
 idx = detectSpeech(data,fs);

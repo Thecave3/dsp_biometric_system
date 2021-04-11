@@ -14,8 +14,8 @@ all_ftrs = [];
 for c = 1:3
     [data,info]= record_audio(sample_time);
     save_audio(username,c,data,info);
-    disp("Wait for "+ num2str(sample_time)+ " seconds")
-    pause(sample_time);
+    disp("Wait for "+ num2str(sample_time/2)+ " seconds")
+    pause(sample_time/2);
     fresh_ftr = feature_extraction(data,info);
     all_ftrs = vertcat(all_ftrs,fresh_ftr);
 end
