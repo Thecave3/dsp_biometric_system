@@ -7,7 +7,7 @@ if time < 0
 end
 
 recObj = audiorecorder;
-disp('Start speaking.')
+disp('Start recording...')
 recordblocking(recObj, time);
 disp('End of Recording.');
 data =  getaudiodata(recObj);
