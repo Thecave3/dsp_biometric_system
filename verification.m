@@ -12,11 +12,14 @@ function verification(sample_time,username,acceptance_trshd)
 extracted_ftrs = feature_extraction(data,info);
 stored_gmm = get_stored_model(username);
 
-% Mahalanobis distance to Gaussian mixture component
-mahal_distance = sqrt(mahal(stored_gmm,extracted_ftrs));
 
-disp("mahal_distance: " +mahal_distance +" acceptance_trshd: "+acceptance_trshd);
-if mahal_distance > acceptance_trshd
+P = posterior(stored_gmm,extracted_ftrs);
+
+% Mahalanobis distance to Gaussian mixture component
+%mahal_distance = sqrt(mahal(stored_gmm,extracted_ftrs));
+%disp("mahal_distance: " +  mahal_distance +" acceptance_trshd: "+ acceptance_trshd);
+
+if P >= acceptance_trshd
     disp("Welcome back "+username+"!"); 
 else
     disp("Error, unauthorized!"); 

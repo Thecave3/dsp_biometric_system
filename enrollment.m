@@ -3,6 +3,7 @@ function enrollment(sample_time,username)
 % routine that performs the creations of the templates
 % sample_time represents the recording time for each representation
 % username represent the identification in the database of the user
+
 main_path = "./database/";
 
 if not(isfolder(main_path+username))
