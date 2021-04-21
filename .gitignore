@@ -29,3 +29,7 @@ codegen/
 
 # Octave session info
 octave-workspace
+/identification/test.wav
+/identification/voice_database/
+/identification/gmm_models/
+/.idea/

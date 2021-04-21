@@ -1,0 +1,12 @@
+joblib
+numpy
+pandas
+praat-parselmouth
+pyaudio
+python_speech_features
+scipy
+sklearn
+scikit-learn
+tensorflow
+IPython
+keras
